@@ -112,9 +112,9 @@
   <ItemGroup>
     <Resource Include="taeyeon.gif" />
     <Resource Include="sans-256.ico" />
-    <Content Include="SansSpeak.wav">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SansSpeak.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
