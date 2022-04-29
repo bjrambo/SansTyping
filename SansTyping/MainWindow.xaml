@@ -6,14 +6,18 @@
         xmlns:local="clr-namespace:SansTyping"
         xmlns:wpfanimated="http://wpfanimatedgif.codeplex.com"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="359" Icon="sans-256.png" ResizeMode="CanResizeWithGrip" WindowStyle="None" AllowsTransparency="True"
+        Title="MainWindow" Height="359" Width="359" Icon="sans-256.png" ResizeMode="CanResizeWithGrip" WindowStyle="None" AllowsTransparency="True"
         MouseDown="Window_MouseDown"
         Topmost="True">
     <Window.Background>
         <SolidColorBrush Opacity="0" Color="White" />
     </Window.Background>
     <Grid>
-        <Image wpfanimated:ImageBehavior.AnimatedSource="sans.gif"
-               wpfanimated:ImageBehavior.RepeatBehavior="1" wpfanimated:ImageBehavior.AutoStart="True" OpacityMask="White" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Image wpfanimated:ImageBehavior.AnimatedSource="taeyeon.gif"
+               wpfanimated:ImageBehavior.RepeatBehavior="1" wpfanimated:ImageBehavior.AutoStart="True" OpacityMask="White" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="359" />
     </Grid>
 </Window>
