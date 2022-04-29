@@ -14,6 +14,8 @@ namespace SansTyping
 
         private List<int> hitList = new List<int>();
 
+        public bool isSoundOff = false;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -37,7 +39,12 @@ namespace SansTyping
 
         private bool KeyboardHook_KeyDown(int vkCode)
         {
-            if(hitList.Contains(vkCode))
+            if (isSoundOff)
+            {
+                return true;
+            }
+
+            if (hitList.Contains(vkCode))
             {
                 return true;
             }
@@ -49,7 +56,11 @@ namespace SansTyping
 
         private bool KeyboardHook_KeyUp(int vkCode)
         {
-            if(hitList.Contains(vkCode))
+            if (isSoundOff)
+            {
+                return true;
+            }
+            if (hitList.Contains(vkCode))
             {
                 hitList.Remove(vkCode);
             }
@@ -73,6 +84,16 @@ namespace SansTyping
             players[index].Stop();
             players[index].Play();
             index = (index + 1) % players.Length;
+        }
+
+        private void SoundOffSet(object sender, RoutedEventArgs e)
+        {
+            isSoundOff = true;
+        }
+
+        private void SoundOnSet(object sender, RoutedEventArgs e)
+        {
+            isSoundOff = false;
         }
     }
 }

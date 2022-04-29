@@ -19,5 +19,6 @@
         </Grid.ColumnDefinitions>
         <Image wpfanimated:ImageBehavior.AnimatedSource="taeyeon.gif"
                wpfanimated:ImageBehavior.RepeatBehavior="1" wpfanimated:ImageBehavior.AutoStart="True" OpacityMask="White" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="359" />
+        <CheckBox Content="소리 끄기" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="10,334,0,0" VerticalAlignment="Top" Foreground="White" AutomationProperties.Name="OffSound" Checked="SoundOffSet" Unchecked="SoundOnSet"/>
     </Grid>
 </Window>
