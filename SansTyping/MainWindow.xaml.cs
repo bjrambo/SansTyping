@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 using System.Windows.Input;
@@ -11,7 +12,7 @@ namespace SansTyping
         private MediaPlayer[] players;
         private int index;
 
-        private int lastHit;
+        private List<int> hitList = new List<int>();
 
         public MainWindow()
         {
@@ -36,20 +37,21 @@ namespace SansTyping
 
         private bool KeyboardHook_KeyDown(int vkCode)
         {
-            if (lastHit == vkCode)
+            if(hitList.Contains(vkCode))
             {
                 return true;
             }
-            lastHit = vkCode;
+
+            hitList.Add(vkCode);
             Play();
             return true;
         }
 
         private bool KeyboardHook_KeyUp(int vkCode)
         {
-            if (lastHit == vkCode)
+            if(hitList.Contains(vkCode))
             {
-                lastHit = -1;
+                hitList.Remove(vkCode);
             }
             return true;
         }

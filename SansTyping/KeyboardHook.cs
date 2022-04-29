@@ -35,7 +35,6 @@ namespace Hook
                     {
                         return (IntPtr)1;
                     }
-
                 }
 
                 if (wParam == (IntPtr)WM_KEYUP || (GetSystemKeyEvent && wParam == (IntPtr)WM_SYSTEMKEYUP))
