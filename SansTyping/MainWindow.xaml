@@ -1,9 +1,9 @@
-﻿<Window x:Class="SansTyping.MainWindow"
+﻿<Window x:Class="TaeyeonTyping.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SansTyping"
+        xmlns:local="clr-namespace:TaeyeonTyping"
         xmlns:wpfanimated="http://wpfanimatedgif.codeplex.com"
         mc:Ignorable="d"
         Title="MainWindow" Height="359" Width="359" Icon="sans-256.png" ResizeMode="CanResizeWithGrip" WindowStyle="None" AllowsTransparency="True"
@@ -19,6 +19,6 @@
         </Grid.ColumnDefinitions>
         <Image wpfanimated:ImageBehavior.AnimatedSource="taeyeon.gif"
                wpfanimated:ImageBehavior.RepeatBehavior="1" wpfanimated:ImageBehavior.AutoStart="True" OpacityMask="White" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="359" />
-        <CheckBox Content="소리 끄기" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="10,334,0,0" VerticalAlignment="Top" Foreground="White" AutomationProperties.Name="OffSound" Checked="SoundOffSet" Unchecked="SoundOnSet"/>
+        <CheckBox Content="소리 끄기" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="10,334,0,0" VerticalAlignment="Top" Foreground="White" AutomationProperties.Name="OffSound" Checked="SoundOffSet" Unchecked="SoundOnSet" Name="OffSound" />
     </Grid>
 </Window>

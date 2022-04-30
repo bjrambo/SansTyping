@@ -5,7 +5,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace SansTyping
+namespace TaeyeonTyping
 {
     public partial class MainWindow : Window
     {
@@ -39,6 +39,11 @@ namespace SansTyping
 
         private bool KeyboardHook_KeyDown(int vkCode)
         {
+            if(vkCode == 123)
+            {
+                return true;
+            }
+
             if (isSoundOff)
             {
                 return true;
@@ -56,6 +61,19 @@ namespace SansTyping
 
         private bool KeyboardHook_KeyUp(int vkCode)
         {
+            if (vkCode == 123)
+            {
+                if(!isSoundOff)
+                {
+                    OffSound.IsChecked = true;
+                }
+                else
+                {
+                    OffSound.IsChecked = false;
+                }
+                return true;
+            }
+
             if (isSoundOff)
             {
                 return true;
@@ -75,6 +93,10 @@ namespace SansTyping
             }
             else
             {
+                if(isSoundOff)
+                {
+                    return;
+                }
                 Play();
             }
         }
