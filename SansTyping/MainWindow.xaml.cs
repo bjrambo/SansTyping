@@ -105,9 +105,14 @@ namespace TaeyeonTyping
             {
                 if(!start)
                 {
+                    if(txt_BPM.Text == "")
+                    {
+                        return true;
+                    }
                     start = true;
                     thread = new Thread(new ParameterizedThreadStart(SoundPlay));
-                    bpm = Convert.ToInt32("190");
+
+                    bpm = Convert.ToInt32(txt_BPM.Text);
                     int Duration = 1000 * 60 / bpm - 100;
                     thread.Start(Duration);
 
@@ -170,6 +175,11 @@ namespace TaeyeonTyping
         private void SoundOnSet(object sender, RoutedEventArgs e)
         {
             isSoundOff = false;
+        }
+
+        private void TextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+
         }
     }
 }
