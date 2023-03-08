@@ -47,10 +47,31 @@ namespace TaeyeonTyping
             {
                 return true;
             }
-            if (vkCode == 122)
+
+            if (vkCode == 122 || vkCode == 21)
             {
+                if (!start)
+                {
+                    if (txt_BPM.Text == "")
+                    {
+                        return true;
+                    }
+                    start = true;
+                    thread = new Thread(new ParameterizedThreadStart(SoundPlay));
+
+                    bpm = Convert.ToInt32(txt_BPM.Text);
+                    int Duration = 1000 * 60 / bpm - 100;
+                    thread.Start(Duration);
+
+                }
+                else
+                {
+                    start = false;
+                    thread.Abort();
+                }
                 return true;
             }
+
 
             if (isSoundOff)
             {
@@ -92,7 +113,7 @@ namespace TaeyeonTyping
             {
                 if(!isSoundOff)
                 {
-                    OffSound.IsChecked = true;
+                    OffSound.IsChecked = true; 
                 }
                 else
                 {
@@ -101,28 +122,6 @@ namespace TaeyeonTyping
                 return true;
             }
 
-            if (vkCode == 122)
-            {
-                if(!start)
-                {
-                    if(txt_BPM.Text == "")
-                    {
-                        return true;
-                    }
-                    start = true;
-                    thread = new Thread(new ParameterizedThreadStart(SoundPlay));
-
-                    bpm = Convert.ToInt32(txt_BPM.Text);
-                    int Duration = 1000 * 60 / bpm - 100;
-                    thread.Start(Duration);
-
-                }
-                else
-                {
-                    start = false;
-                    thread.Abort();
-                }
-            }
 
             if (isSoundOff)
             {
