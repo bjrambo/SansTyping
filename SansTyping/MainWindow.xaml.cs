@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -10,6 +11,7 @@ namespace TaeyeonTyping
     public partial class MainWindow : Window
     {
         private MediaPlayer[] players;
+        private MediaPlayer metroPlayer;
         private int index;
 
         private List<int> hitList = new List<int>();
@@ -30,6 +32,8 @@ namespace TaeyeonTyping
                 players[i] = new MediaPlayer();
                 players[i].Open(audioPath);
             }
+            metroPlayer = new MediaPlayer();
+            metroPlayer.Open(audioPath);
         }
 
         ~MainWindow()
@@ -40,6 +44,10 @@ namespace TaeyeonTyping
         private bool KeyboardHook_KeyDown(int vkCode)
         {
             if(vkCode == 123)
+            {
+                return true;
+            }
+            if (vkCode == 122)
             {
                 return true;
             }
@@ -59,6 +67,25 @@ namespace TaeyeonTyping
             return true;
         }
 
+        int bpm;
+        Thread thread;
+        bool start = false;
+
+        private void SoundPlay(object args)
+        {
+            while (true)
+            {
+                Metro();
+                Thread.Sleep((int)args + 100);
+                Metro();
+                Thread.Sleep((int)args + 100);
+                Metro();
+                Thread.Sleep((int)args + 100);
+                Metro();
+                Thread.Sleep((int)args + 100);
+            }
+        }
+
         private bool KeyboardHook_KeyUp(int vkCode)
         {
             if (vkCode == 123)
@@ -72,6 +99,24 @@ namespace TaeyeonTyping
                     OffSound.IsChecked = false;
                 }
                 return true;
+            }
+
+            if (vkCode == 122)
+            {
+                if(!start)
+                {
+                    start = true;
+                    thread = new Thread(new ParameterizedThreadStart(SoundPlay));
+                    bpm = Convert.ToInt32("190");
+                    int Duration = 1000 * 60 / bpm - 100;
+                    thread.Start(Duration);
+
+                }
+                else
+                {
+                    start = false;
+                    thread.Abort();
+                }
             }
 
             if (isSoundOff)
@@ -106,6 +151,15 @@ namespace TaeyeonTyping
             players[index].Stop();
             players[index].Play();
             index = (index + 1) % players.Length;
+        }
+
+        private void Metro()
+        {
+            metroPlayer.Dispatcher.Invoke(() =>
+            {
+                metroPlayer.Stop();
+                metroPlayer.Play();
+            });
         }
 
         private void SoundOffSet(object sender, RoutedEventArgs e)
